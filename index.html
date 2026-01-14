@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Suivez les transactions en temps réel sur trade.xyz - Marchés HIP-3 incluant actions, matières premières et forex">
+  <meta name="keywords" content="trade.xyz, HIP-3, Hyperliquid, crypto, trading, transactions, AAPL, NVDA, TSLA, GOLD">
+  <title>trade.xyz Tracker | Transactions en Direct</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-content">
+      <a href="#" class="logo">
+        <div class="logo-icon">XYZ</div>
+        <span>trade<span class="text-gradient">.xyz</span> Tracker</span>
+      </a>
+      
+      <div class="search-container">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="search-input" 
+          placeholder="Rechercher un marché (AAPL, GOLD, EUR...)"
+        >
+      </div>
+      
+      <div class="connection-status">
+        <span class="status-dot"></span>
+        <span>Déconnecté</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1 class="page-title">Transactions <span class="text-gradient">En Direct</span></h1>
+        <p class="page-subtitle">Suivez toutes les transactions sur les marchés HIP-3 de trade.xyz en temps réel</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value text-gradient" id="statMarkets">0</div>
+          <div class="stat-label">Marchés Actifs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statTrades">0</div>
+          <div class="stat-label">Trades Récents</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value text-gradient">26</div>
+          <div class="stat-label">Paires HIP-3</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statConnected">Non</div>
+          <div class="stat-label">WebSocket</div>
+        </div>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="category-tabs">
+        <button class="category-tab active" data-category="all">🌐 Tous</button>
+        <button class="category-tab" data-category="equities">📈 Actions</button>
+        <button class="category-tab" data-category="commodities">🏆 Commodités</button>
+        <button class="category-tab" data-category="forex">💱 Forex</button>
+        <button class="category-tab" data-category="index">📊 Index</button>
+      </div>
+
+      <!-- Main Layout -->
+      <div class="layout-split">
+        <!-- Left: Markets Grid -->
+        <section>
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">📈 Marchés HIP-3</h2>
+            </div>
+            <div id="marketsGrid" class="grid grid-auto">
+              <!-- Markets will be loaded here -->
+              <div class="loading">
+                <div class="spinner"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right: Live Trades Feed -->
+        <section>
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title">⚡ Trades en Direct</h2>
+            </div>
+            <div id="tradesFeed" class="trades-feed">
+              <div class="empty-state">
+                <div class="empty-state-icon">📡</div>
+                <p>En attente de connexion WebSocket...</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Wallet Lookup Section -->
+      <section style="margin-top: 2rem;">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">🔍 Recherche de Wallet</h2>
+          </div>
+          <p class="text-secondary" style="margin-bottom: 1rem;">
+            Entrez une adresse wallet Ethereum pour voir l'historique des transactions sur les marchés HIP-3
+          </p>
+          <form id="walletForm" class="wallet-input-group">
+            <input 
+              type="text" 
+              id="walletInput" 
+              class="wallet-input" 
+              placeholder="0x... (adresse wallet)"
+            >
+            <button type="submit" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+              </svg>
+              Rechercher
+            </button>
+          </form>
+          
+          <div id="userFills" style="margin-top: 1.5rem;">
+            <!-- User fills will appear here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Info -->
+      <footer style="margin-top: 3rem; padding: 2rem 0; text-align: center; border-top: 1px solid var(--border-color);">
+        <p class="text-secondary" style="margin-bottom: 0.5rem;">
+          Données en temps réel via l'API Hyperliquid • Marchés HIP-3 sur trade.xyz
+        </p>
+        <p class="text-tertiary" style="font-size: 0.875rem;">
+          ⚠️ Ce site n'est pas affilié à trade.xyz. À des fins informatives seulement.
+        </p>
+      </footer>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/websocket.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
