@@ -185,6 +185,8 @@ function updateAllTranslations() {
     // Update all elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.dataset.i18n;
+        // Skip connection text - it will be updated separately based on actual status
+        if (el.id === 'connectionText') return;
         el.textContent = t(key);
     });
 
@@ -199,6 +201,19 @@ function updateAllTranslations() {
 
     // Update category tabs
     updateCategoryTabs();
+
+    // Update connection status with actual WebSocket state
+    if (window.wsManager && window.Components) {
+        Components.updateConnectionStatus(wsManager.getStatus());
+    }
+
+    // Update stats with translated text
+    if (window.wsManager) {
+        const statConnected = document.getElementById('statConnected');
+        if (statConnected) {
+            statConnected.textContent = wsManager.getStatus() ? t('yes') : t('no');
+        }
+    }
 }
 
 /**
