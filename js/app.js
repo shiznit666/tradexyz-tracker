@@ -183,7 +183,8 @@ function updateStats() {
     const statElements = {
         'statMarkets': activeMarkets,
         'statTrades': state.trades.length,
-        'statConnected': wsManager.getStatus() ? 'Oui' : 'Non'
+        'statConnected': wsManager.getStatus() ? i18n.t('yes') : i18n.t('no'),
+        'statPairs': activeMarkets
     };
 
     Object.entries(statElements).forEach(([id, value]) => {
@@ -201,7 +202,7 @@ function connectWebSocket() {
     // Connection status
     wsManager.onConnect(() => {
         Components.updateConnectionStatus(true);
-        Components.showToast('Connecté en temps réel', 'success');
+        Components.showToast(i18n.t('connectedRealtime'), 'success');
 
         // Subscribe to all xyz trades
         wsManager.subscribeAllTrades();

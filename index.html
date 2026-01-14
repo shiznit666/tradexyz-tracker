@@ -1,23 +1,29 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Suivez les transactions en temps réel sur trade.xyz - Marchés HIP-3 incluant actions, matières premières et forex">
+  <meta name="description"
+    content="Track real-time transactions on trade.xyz - HIP-3 markets including stocks, commodities and forex">
   <meta name="keywords" content="trade.xyz, HIP-3, Hyperliquid, crypto, trading, transactions, AAPL, NVDA, TSLA, GOLD">
-  <title>trade.xyz Tracker | Transactions en Direct</title>
-  
+  <title>trade.xyz Tracker | Live Transactions</title>
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
   <!-- Styles -->
   <link rel="stylesheet" href="css/styles.css">
-  
+
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
 </head>
+
 <body>
   <!-- Header -->
   <header class="header">
@@ -26,23 +32,28 @@
         <div class="logo-icon">XYZ</div>
         <span>trade<span class="text-gradient">.xyz</span> Tracker</span>
       </a>
-      
+
       <div class="search-container">
-        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/>
-          <path d="m21 21-4.35-4.35"/>
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
         </svg>
-        <input 
-          type="text" 
-          id="searchInput" 
-          class="search-input" 
-          placeholder="Rechercher un marché (AAPL, GOLD, EUR...)"
-        >
+        <input type="text" id="searchInput" class="search-input" data-i18n-placeholder="searchPlaceholder"
+          placeholder="Search a market (AAPL, GOLD, EUR...)">
       </div>
-      
-      <div class="connection-status">
-        <span class="status-dot"></span>
-        <span>Déconnecté</span>
+
+      <div class="header-right">
+        <div class="connection-status">
+          <span class="status-dot"></span>
+          <span id="connectionText" data-i18n="disconnected">Disconnected</span>
+        </div>
+
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="en" onclick="i18n.setLanguage('en')" title="English">🇬🇧</button>
+          <button class="lang-btn" data-lang="fr" onclick="i18n.setLanguage('fr')" title="Français">🇫🇷</button>
+        </div>
       </div>
     </div>
   </header>
@@ -52,37 +63,39 @@
     <div class="container">
       <!-- Page Header -->
       <div class="page-header">
-        <h1 class="page-title">Transactions <span class="text-gradient">En Direct</span></h1>
-        <p class="page-subtitle">Suivez toutes les transactions sur les marchés HIP-3 de trade.xyz en temps réel</p>
+        <h1 class="page-title" id="pageTitle">Live <span class="text-gradient">Transactions</span></h1>
+        <p class="page-subtitle" data-i18n="pageSubtitle">Track all transactions on trade.xyz HIP-3 markets in real-time
+        </p>
       </div>
 
       <!-- Stats -->
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-value text-gradient" id="statMarkets">0</div>
-          <div class="stat-label">Marchés Actifs</div>
+          <div class="stat-label" data-i18n="activeMarkets">Active Markets</div>
         </div>
         <div class="stat-card">
           <div class="stat-value" id="statTrades">0</div>
-          <div class="stat-label">Trades Récents</div>
+          <div class="stat-label" data-i18n="recentTrades">Recent Trades</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value text-gradient">26</div>
-          <div class="stat-label">Paires HIP-3</div>
+          <div class="stat-value text-gradient" id="statPairs">26</div>
+          <div class="stat-label" data-i18n="hip3Pairs">HIP-3 Pairs</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value" id="statConnected">Non</div>
-          <div class="stat-label">WebSocket</div>
+          <div class="stat-value" id="statConnected">No</div>
+          <div class="stat-label" data-i18n="webSocket">WebSocket</div>
         </div>
       </div>
 
       <!-- Category Tabs -->
       <div class="category-tabs">
-        <button class="category-tab active" data-category="all">🌐 Tous</button>
-        <button class="category-tab" data-category="equities">📈 Actions</button>
-        <button class="category-tab" data-category="commodities">🏆 Commodités</button>
-        <button class="category-tab" data-category="forex">💱 Forex</button>
-        <button class="category-tab" data-category="index">📊 Index</button>
+        <button class="category-tab active" data-category="all">🌐 <span data-i18n="all">All</span></button>
+        <button class="category-tab" data-category="equities">📈 <span data-i18n="equities">Stocks</span></button>
+        <button class="category-tab" data-category="commodities">🏆 <span
+            data-i18n="commodities">Commodities</span></button>
+        <button class="category-tab" data-category="forex">💱 <span data-i18n="forex">Forex</span></button>
+        <button class="category-tab" data-category="index">📊 <span data-i18n="index">Index</span></button>
       </div>
 
       <!-- Main Layout -->
@@ -91,7 +104,7 @@
         <section>
           <div class="card">
             <div class="card-header">
-              <h2 class="card-title">📈 Marchés HIP-3</h2>
+              <h2 class="card-title">📈 <span data-i18n="marketsTitle">HIP-3 MARKETS</span></h2>
             </div>
             <div id="marketsGrid" class="grid grid-auto">
               <!-- Markets will be loaded here -->
@@ -106,12 +119,12 @@
         <section>
           <div class="card">
             <div class="card-header">
-              <h2 class="card-title">⚡ Trades en Direct</h2>
+              <h2 class="card-title">⚡ <span data-i18n="liveTradesTitle">LIVE TRADES</span></h2>
             </div>
             <div id="tradesFeed" class="trades-feed">
               <div class="empty-state">
                 <div class="empty-state-icon">📡</div>
-                <p>En attente de connexion WebSocket...</p>
+                <p data-i18n="waitingConnection">Waiting for WebSocket connection...</p>
               </div>
             </div>
           </div>
@@ -122,27 +135,23 @@
       <section style="margin-top: 2rem;">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">🔍 Recherche de Wallet</h2>
+            <h2 class="card-title">🔍 <span data-i18n="walletSearchTitle">WALLET LOOKUP</span></h2>
           </div>
-          <p class="text-secondary" style="margin-bottom: 1rem;">
-            Entrez une adresse wallet Ethereum pour voir l'historique des transactions sur les marchés HIP-3
+          <p class="text-secondary" style="margin-bottom: 1rem;" data-i18n="walletSearchDesc">
+            Enter an Ethereum wallet address to view transaction history on HIP-3 markets
           </p>
           <form id="walletForm" class="wallet-input-group">
-            <input 
-              type="text" 
-              id="walletInput" 
-              class="wallet-input" 
-              placeholder="0x... (adresse wallet)"
-            >
+            <input type="text" id="walletInput" class="wallet-input" data-i18n-placeholder="walletPlaceholder"
+              placeholder="0x... (wallet address)">
             <button type="submit" class="btn btn-primary">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.35-4.35"/>
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
               </svg>
-              Rechercher
+              <span data-i18n="search">Search</span>
             </button>
           </form>
-          
+
           <div id="userFills" style="margin-top: 1.5rem;">
             <!-- User fills will appear here -->
           </div>
@@ -151,20 +160,31 @@
 
       <!-- Footer Info -->
       <footer style="margin-top: 3rem; padding: 2rem 0; text-align: center; border-top: 1px solid var(--border-color);">
-        <p class="text-secondary" style="margin-bottom: 0.5rem;">
-          Données en temps réel via l'API Hyperliquid • Marchés HIP-3 sur trade.xyz
+        <p class="text-secondary" style="margin-bottom: 0.5rem;" data-i18n="footerText">
+          Real-time data via Hyperliquid API • HIP-3 markets on trade.xyz
         </p>
-        <p class="text-tertiary" style="font-size: 0.875rem;">
-          ⚠️ Ce site n'est pas affilié à trade.xyz. À des fins informatives seulement.
+        <p class="text-tertiary" style="font-size: 0.875rem;" data-i18n="disclaimer">
+          ⚠️ This site is not affiliated with trade.xyz. For informational purposes only.
         </p>
       </footer>
     </div>
   </main>
 
-  <!-- Scripts -->
+  <!-- Scripts - i18n must be loaded first -->
+  <script src="js/i18n.js"></script>
   <script src="js/api.js"></script>
   <script src="js/websocket.js"></script>
   <script src="js/components.js"></script>
   <script src="js/app.js"></script>
+
+  <!-- Initialize language on load -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Update button states based on saved language
+      const savedLang = localStorage.getItem('lang') || 'en';
+      i18n.setLanguage(savedLang);
+    });
+  </script>
 </body>
+
 </html>

@@ -1044,3 +1044,55 @@ main {
     grid-template-columns: 1fr;
   }
 }
+
+/* Language Switcher */
+.language-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 28px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 1.25rem;
+  opacity: 0.6;
+}
+
+.lang-btn:hover {
+  opacity: 1;
+  border-color: var(--border-glow);
+  transform: scale(1.05);
+}
+
+.lang-btn.active {
+  opacity: 1;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .language-switcher {
+    margin-left: 0;
+  }
+
+  .header-right {
+    order: 1;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
