@@ -20,6 +20,11 @@ const translations = {
         yes: "Yes",
         no: "No",
 
+        // Main Tabs
+        tabMarkets: "Markets",
+        tabAnalytics: "Analytics",
+        tabWallet: "Wallet",
+
         // Categories
         all: "All",
         equities: "Stocks",
@@ -105,6 +110,11 @@ const translations = {
         webSocket: "WebSocket",
         yes: "Oui",
         no: "Non",
+
+        // Main Tabs
+        tabMarkets: "Marchés",
+        tabAnalytics: "Statistiques",
+        tabWallet: "Portefeuille",
 
         // Categories
         all: "Tous",

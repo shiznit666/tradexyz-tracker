@@ -57,6 +57,14 @@ function setupEventListeners() {
         });
     }
 
+    // Main navigation tabs
+    document.querySelectorAll('.main-tab').forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            const tabName = e.currentTarget.dataset.tab;
+            switchTab(tabName);
+        });
+    });
+
     // Category tabs
     document.querySelectorAll('.category-tab').forEach(tab => {
         tab.addEventListener('click', (e) => {
@@ -77,6 +85,30 @@ function setupEventListeners() {
                 await lookupWallet(input.value.trim());
             }
         });
+    }
+}
+
+/**
+ * Switch between main tabs
+ */
+function switchTab(tabName) {
+    // Update tab buttons
+    document.querySelectorAll('.main-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.tab === tabName);
+    });
+
+    // Update tab content
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.toggle('active', content.id === `tab-${tabName}`);
+    });
+
+    // Re-initialize charts if switching to analytics tab
+    if (tabName === 'analytics' && window.Charts) {
+        // Small delay to ensure DOM is visible
+        setTimeout(() => {
+            Charts.init();
+            Charts.renderChartLegend();
+        }, 100);
     }
 }
 
