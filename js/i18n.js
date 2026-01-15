@@ -71,6 +71,15 @@ const translations = {
         madeWith: "Made with",
         by: "by",
 
+        // Analytics
+        analyticsTitle: "PER-DEX SYMBOL ANALYTICS",
+        tradingVolume: "Trading Volume",
+        uniqueTraders: "Unique Traders",
+        feesCollected: "Trading Fees Collected",
+        liquidations: "Liquidations",
+        volumeOverTime: "Trade[XYZ] Trading Volume Over Time (by Symbol)",
+        volumeBreakdown: "Trade[XYZ] Trading Volume % Breakdown by Symbol",
+
         // Toasts
         connectedRealtime: "Connected in real-time",
         invalidWallet: "Invalid wallet address",
@@ -147,6 +156,15 @@ const translations = {
         addressCopied: "Adresse copiée !",
         madeWith: "Fait avec",
         by: "par",
+
+        // Analytics
+        analyticsTitle: "ANALYTICS PAR SYMBOLE",
+        tradingVolume: "Volume de Trading",
+        uniqueTraders: "Traders Uniques",
+        feesCollected: "Frais Collectés",
+        liquidations: "Liquidations",
+        volumeOverTime: "Trade[XYZ] Volume par Jour (par Symbole)",
+        volumeBreakdown: "Trade[XYZ] Répartition du Volume en %",
 
         // Toasts
         connectedRealtime: "Connecté en temps réel",

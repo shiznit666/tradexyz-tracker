@@ -35,6 +35,12 @@ async function init() {
     // Start price refresh interval
     startPriceRefresh();
 
+    // Initialize charts
+    if (window.Charts) {
+        Charts.init();
+        Charts.renderChartLegend();
+    }
+
     console.log('Application initialized!');
 }
 

@@ -22,6 +22,9 @@
   <!-- Favicon -->
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 
 <body>
@@ -158,8 +161,69 @@
         </div>
       </section>
 
+      <!-- Analytics Section -->
+      <section style="margin-top: 2rem;">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">📊 <span data-i18n="analyticsTitle">PER-DEX SYMBOL ANALYTICS</span></h2>
+            <span class="badge-dex">Trade[XYZ]</span>
+          </div>
+
+          <!-- Analytics Stats -->
+          <div class="analytics-stats">
+            <div class="analytics-stat">
+              <div class="analytics-stat-label" data-i18n="tradingVolume">Trading Volume</div>
+              <div class="analytics-stat-value text-gradient" id="chartVolume">$0</div>
+            </div>
+            <div class="analytics-stat">
+              <div class="analytics-stat-label" data-i18n="uniqueTraders">Unique Traders</div>
+              <div class="analytics-stat-value" id="chartTraders">0</div>
+            </div>
+            <div class="analytics-stat">
+              <div class="analytics-stat-label" data-i18n="feesCollected">Trading Fees Collected</div>
+              <div class="analytics-stat-value text-gradient" id="chartFees">$0</div>
+            </div>
+            <div class="analytics-stat">
+              <div class="analytics-stat-label" data-i18n="liquidations">Liquidations</div>
+              <div class="analytics-stat-value" id="chartLiquidations">0</div>
+            </div>
+          </div>
+
+          <!-- Charts Grid -->
+          <div class="charts-grid">
+            <div class="chart-container">
+              <div class="chart-header">
+                <h3 data-i18n="volumeOverTime">Trade[XYZ] Trading Volume Over Time (by Symbol)</h3>
+                <div class="chart-toggle">
+                  <button class="chart-toggle-btn active">Bar</button>
+                </div>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="volumeChart"></canvas>
+              </div>
+            </div>
+
+            <div class="chart-container">
+              <div class="chart-header">
+                <h3 data-i18n="volumeBreakdown">Trade[XYZ] Trading Volume % Breakdown by Symbol</h3>
+                <div class="chart-toggle">
+                  <button class="chart-toggle-btn active">Area</button>
+                </div>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="breakdownChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div id="chartLegend" class="chart-legend"></div>
+        </div>
+      </section>
+
       <!-- Footer Info -->
       <footer style="margin-top: 3rem; padding: 2rem 0; text-align: center; border-top: 1px solid var(--border-color);">
+
 
         <!-- Referral & Donation Section -->
         <div class="footer-links">
@@ -195,6 +259,7 @@
   <script src="js/api.js"></script>
   <script src="js/websocket.js"></script>
   <script src="js/components.js"></script>
+  <script src="js/charts.js"></script>
   <script src="js/app.js"></script>
 
   <!-- Initialize language on load -->
