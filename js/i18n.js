@@ -65,6 +65,11 @@ const translations = {
         // Footer
         footerText: "Real-time data via Hyperliquid API • HIP-3 markets on trade.xyz",
         disclaimer: "⚠️ This site is not affiliated with trade.xyz. For informational purposes only.",
+        joinHyperliquid: "Join Hyperliquid",
+        buyMeCoffee: "Buy me a coffee",
+        addressCopied: "Address copied to clipboard!",
+        madeWith: "Made with",
+        by: "by",
 
         // Toasts
         connectedRealtime: "Connected in real-time",
@@ -137,6 +142,11 @@ const translations = {
         // Footer
         footerText: "Données en temps réel via l'API Hyperliquid • Marchés HIP-3 sur trade.xyz",
         disclaimer: "⚠️ Ce site n'est pas affilié à trade.xyz. À des fins informatives seulement.",
+        joinHyperliquid: "Rejoindre Hyperliquid",
+        buyMeCoffee: "Offrez-moi un café",
+        addressCopied: "Adresse copiée !",
+        madeWith: "Fait avec",
+        by: "par",
 
         // Toasts
         connectedRealtime: "Connecté en temps réel",

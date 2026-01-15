@@ -160,13 +160,33 @@
 
       <!-- Footer Info -->
       <footer style="margin-top: 3rem; padding: 2rem 0; text-align: center; border-top: 1px solid var(--border-color);">
-        <p class="text-secondary" style="margin-bottom: 0.5rem;" data-i18n="footerText">
+
+        <!-- Referral & Donation Section -->
+        <div class="footer-links">
+          <a href="https://app.hyperliquid.xyz/join/SHIZ" target="_blank" rel="noopener" class="footer-cta referral">
+            🚀 <span data-i18n="joinHyperliquid">Join Hyperliquid</span>
+          </a>
+          <button class="footer-cta donation" onclick="copyDonation()" title="Click to copy">
+            ☕ <span data-i18n="buyMeCoffee">Buy me a coffee</span>
+            <span class="donation-address">0x2A7D...0357</span>
+          </button>
+        </div>
+
+        <p class="text-secondary" style="margin-bottom: 0.5rem; margin-top: 1.5rem;" data-i18n="footerText">
           Real-time data via Hyperliquid API • HIP-3 markets on trade.xyz
         </p>
         <p class="text-tertiary" style="font-size: 0.875rem;" data-i18n="disclaimer">
           ⚠️ This site is not affiliated with trade.xyz. For informational purposes only.
         </p>
+
+        <p class="text-tertiary" style="font-size: 0.75rem; margin-top: 1rem;">
+          <span data-i18n="madeWith">Made with</span> ❤️ <span data-i18n="by">by</span> SHIZ
+        </p>
       </footer>
+
+      <!-- Hidden full donation address for copying -->
+      <input type="text" id="donationAddress" value="0x2A7D39431021E4f3D4CbD918878A82C6D4F0e357"
+        style="position: absolute; left: -9999px;" readonly>
     </div>
   </main>
 
@@ -184,6 +204,20 @@
       const savedLang = localStorage.getItem('lang') || 'en';
       i18n.setLanguage(savedLang);
     });
+
+    // Copy donation address to clipboard
+    function copyDonation() {
+      const address = '0x2A7D39431021E4f3D4CbD918878A82C6D4F0e357';
+      navigator.clipboard.writeText(address).then(() => {
+        Components.showToast(i18n.t('addressCopied'), 'success');
+      }).catch(() => {
+        // Fallback
+        const input = document.getElementById('donationAddress');
+        input.select();
+        document.execCommand('copy');
+        Components.showToast(i18n.t('addressCopied'), 'success');
+      });
+    }
   </script>
 </body>
 

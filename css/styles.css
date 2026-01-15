@@ -1096,3 +1096,76 @@ main {
     justify-content: flex-end;
   }
 }
+
+/* Footer Links & CTA */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.footer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.footer-cta:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.footer-cta.referral {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+.footer-cta.referral:hover {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.25) 0%, rgba(124, 58, 237, 0.25) 100%);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+}
+
+.footer-cta.donation {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(249, 115, 22, 0.15) 100%);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.footer-cta.donation:hover {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(249, 115, 22, 0.25) 100%);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+.donation-address {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--border-color);
+  margin-left: 0.25rem;
+}
+
+@media (max-width: 480px) {
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-cta {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}
