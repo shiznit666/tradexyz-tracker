@@ -55,6 +55,43 @@
   --transition-slow: 400ms ease;
 }
 
+/* Light Theme Variables */
+[data-theme="light"] {
+  /* Colors */
+  --bg-primary: #f8f9fc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f0f1f5;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-glass: rgba(0, 0, 0, 0.02);
+
+  /* Accent Colors - Keep vibrant */
+  --accent-primary: #0099cc;
+  --accent-secondary: #6d28d9;
+  --accent-gradient: linear-gradient(135deg, #0099cc 0%, #6d28d9 100%);
+  --accent-glow: 0 0 20px rgba(0, 153, 204, 0.2);
+
+  /* Status Colors */
+  --color-success: #059669;
+  --color-success-glow: rgba(5, 150, 105, 0.2);
+  --color-danger: #dc2626;
+  --color-danger-glow: rgba(220, 38, 38, 0.2);
+  --color-warning: #d97706;
+
+  /* Text Colors */
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a5a;
+  --text-tertiary: #8a8a9a;
+
+  /* Border */
+  --border-color: rgba(0, 0, 0, 0.1);
+  --border-glow: rgba(0, 153, 204, 0.3);
+
+  /* Shadows - Lighter for light theme */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
 /* Reset & Base */
 *,
 *::before,
@@ -1394,4 +1431,72 @@ main {
     justify-content: flex-start;
     padding: 0.875rem 1rem;
   }
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 1.25rem;
+  margin-left: 0.5rem;
+}
+
+.theme-toggle:hover {
+  border-color: var(--border-glow);
+  transform: scale(1.05);
+  box-shadow: var(--accent-glow);
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  transition: opacity 0.2s, transform 0.3s;
+}
+
+/* Show/hide icons based on theme */
+[data-theme="light"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+[data-theme="light"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+:root .theme-toggle .icon-sun {
+  display: none;
+}
+
+:root .theme-toggle .icon-moon {
+  display: block;
+}
+
+/* Light theme specific adjustments */
+[data-theme="light"] .card {
+  background: var(--bg-card);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .market-card {
+  background: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="light"] .market-card:hover {
+  background: var(--bg-tertiary);
+}
+
+[data-theme="light"] .main-tab.active {
+  color: white;
+}
+
+[data-theme="light"] .header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
 }

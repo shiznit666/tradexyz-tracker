@@ -57,6 +57,12 @@
           <button class="lang-btn active" data-lang="en" onclick="i18n.setLanguage('en')" title="English">🇬🇧</button>
           <button class="lang-btn" data-lang="fr" onclick="i18n.setLanguage('fr')" title="Français">🇫🇷</button>
         </div>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+          <span class="icon-moon">🌙</span>
+          <span class="icon-sun">☀️</span>
+        </button>
       </div>
     </div>
   </header>
@@ -277,12 +283,18 @@
   <script src="js/charts.js"></script>
   <script src="js/app.js"></script>
 
-  <!-- Initialize language on load -->
+  <!-- Initialize language and theme on load -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // Update button states based on saved language
       const savedLang = localStorage.getItem('lang') || 'en';
       i18n.setLanguage(savedLang);
+
+      // Initialize theme from localStorage
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
     });
 
     // Copy donation address to clipboard
@@ -297,6 +309,20 @@
         document.execCommand('copy');
         Components.showToast(i18n.t('addressCopied'), 'success');
       });
+    }
+
+    // Toggle between light and dark theme
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+
+      if (currentTheme === 'light') {
+        html.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
     }
   </script>
 </body>
