@@ -15,7 +15,7 @@ const translations = {
         // Stats
         activeMarkets: "Active Markets",
         recentTrades: "Recent Trades",
-        hip3Pairs: "HIP-3 Pairs",
+        uniqueTradersLive: "Unique Traders",
         webSocket: "WebSocket",
         yes: "Yes",
         no: "No",
@@ -106,7 +106,7 @@ const translations = {
         // Stats
         activeMarkets: "Marchés Actifs",
         recentTrades: "Trades Récents",
-        hip3Pairs: "Paires HIP-3",
+        uniqueTradersLive: "Traders Uniques",
         webSocket: "WebSocket",
         yes: "Oui",
         no: "Non",

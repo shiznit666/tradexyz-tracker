@@ -11,7 +11,8 @@ const state = {
     userFills: [],
     currentCategory: 'all',
     searchQuery: '',
-    walletAddress: ''
+    walletAddress: '',
+    uniqueTraders: new Set()  // Track unique wallet addresses
 };
 
 // Maximum trades to keep in feed
@@ -221,8 +222,8 @@ function updateStats() {
     const statElements = {
         'statMarkets': activeMarkets,
         'statTrades': state.trades.length,
-        'statConnected': wsManager.getStatus() ? i18n.t('yes') : i18n.t('no'),
-        'statPairs': activeMarkets
+        'statUniqueTraders': state.uniqueTraders.size,
+        'statConnected': wsManager.getStatus() ? i18n.t('yes') : i18n.t('no')
     };
 
     Object.entries(statElements).forEach(([id, value]) => {
@@ -273,6 +274,15 @@ function connectWebSocket() {
 function addTrade(trade) {
     // Only show xyz trades
     if (!trade.coin || !trade.coin.startsWith('xyz:')) return;
+
+    // Track unique trader address
+    if (trade.users && trade.users.length > 0) {
+        trade.users.forEach(user => {
+            if (user && user.length === 42) {  // Valid ETH address
+                state.uniqueTraders.add(user.toLowerCase());
+            }
+        });
+    }
 
     // Add to beginning of array
     state.trades.unshift(trade);
