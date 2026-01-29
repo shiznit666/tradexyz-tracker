@@ -1500,3 +1500,327 @@ main {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
 }
+
+/* ============================================
+   HIP-3 Analysis Table Styles
+   ============================================ */
+
+/* HIP-3 Stats Grid */
+.hip3-stats {
+  margin-bottom: 1.5rem;
+}
+
+/* HIP-3 Filters */
+.hip3-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--bg-glass);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.hip3-filter-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hip3-filter-btn {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hip3-filter-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.hip3-filter-btn.active {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: white;
+}
+
+.hip3-search {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.625rem 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.hip3-search:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+}
+
+.hip3-search::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* HIP-3 Table Container */
+.hip3-table-container {
+  overflow-x: auto;
+  max-height: 600px;
+  overflow-y: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.hip3-table-container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.hip3-table-container::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.hip3-table-container::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.hip3-table-container::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* HIP-3 Table */
+.hip3-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.hip3-table thead {
+  position: sticky;
+  top: 0;
+  background: var(--bg-tertiary);
+  z-index: 10;
+}
+
+.hip3-table th {
+  padding: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.hip3-table th:first-child {
+  text-align: left;
+  padding-left: 1.5rem;
+}
+
+.hip3-table th.text-right {
+  text-align: right;
+}
+
+.hip3-table th:last-child {
+  padding-right: 1.5rem;
+}
+
+.hip3-table th:hover {
+  color: var(--accent-primary);
+}
+
+.hip3-table th.sorted {
+  color: var(--accent-primary);
+}
+
+.hip3-table th .sort-icon {
+  margin-left: 0.25rem;
+  opacity: 0.5;
+  transition: opacity var(--transition-fast);
+}
+
+.hip3-table th.sorted .sort-icon {
+  opacity: 1;
+}
+
+.hip3-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  vertical-align: middle;
+  transition: background var(--transition-fast);
+}
+
+.hip3-table td:first-child {
+  padding-left: 1.5rem;
+}
+
+.hip3-table td:last-child {
+  padding-right: 1.5rem;
+}
+
+.hip3-table td.text-right {
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.hip3-table tbody tr {
+  transition: background var(--transition-fast);
+}
+
+.hip3-table tbody tr:hover {
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.hip3-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Asset Cell */
+.hip3-asset-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hip3-asset-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.7rem;
+  background: var(--bg-glass);
+  border: 2px solid var(--border-color);
+  color: var(--accent-primary);
+}
+
+.hip3-asset-icon.equities {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(79, 70, 229, 0.3));
+  border-color: #6366f1;
+  color: #818cf8;
+}
+
+.hip3-asset-icon.commodities {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.3));
+  border-color: #f59e0b;
+  color: #fbbf24;
+}
+
+.hip3-asset-icon.forex {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.3));
+  border-color: #10b981;
+  color: #34d399;
+}
+
+.hip3-asset-icon.index {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(124, 58, 237, 0.3));
+  border-color: #8b5cf6;
+  color: #a78bfa;
+}
+
+.hip3-asset-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.hip3-asset-category {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-transform: capitalize;
+}
+
+/* Price Display */
+.hip3-price {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Positive/Negative Values */
+.hip3-positive {
+  color: var(--color-success);
+}
+
+.hip3-negative {
+  color: var(--color-danger);
+}
+
+/* Funding Rate Badge */
+.hip3-funding {
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.hip3-funding.extreme-positive {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--color-success);
+}
+
+.hip3-funding.extreme-negative {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--color-danger);
+}
+
+/* No data message */
+.hip3-no-data {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-tertiary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hip3-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hip3-filter-group {
+    justify-content: center;
+  }
+
+  .hip3-search {
+    width: 100%;
+  }
+
+  .hip3-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Light theme adjustments for HIP-3 */
+[data-theme="light"] .hip3-table thead {
+  background: var(--bg-tertiary);
+}
+
+[data-theme="light"] .hip3-table tbody tr:hover {
+  background: rgba(0, 153, 204, 0.05);
+}
+
+[data-theme="light"] .hip3-filters {
+  background: var(--bg-tertiary);
+}
+
+[data-theme="light"] .hip3-search {
+  background: var(--bg-secondary);
+}

@@ -22,6 +22,7 @@ const translations = {
 
         // Main Tabs
         tabMarkets: "Markets",
+        tabHip3: "HIP-3",
         tabAnalytics: "Analytics",
         tabWallet: "Wallet",
 
@@ -85,6 +86,13 @@ const translations = {
         volumeOverTime: "Trade[XYZ] Trading Volume Over Time (by Symbol)",
         volumeBreakdown: "Trade[XYZ] Trading Volume % Breakdown by Symbol",
 
+        // HIP-3 Analysis
+        hip3Title: "HIP-3 MARKETS ANALYSIS",
+        totalVolume24h: "Volume 24h",
+        totalOpenInterest: "Open Interest",
+        bestPerformer: "Best Performer",
+        worstPerformer: "Worst Performer",
+
         // Toasts
         connectedRealtime: "Connected in real-time",
         invalidWallet: "Invalid wallet address",
@@ -113,6 +121,7 @@ const translations = {
 
         // Main Tabs
         tabMarkets: "Marchés",
+        tabHip3: "HIP-3",
         tabAnalytics: "Statistiques",
         tabWallet: "Portefeuille",
 
@@ -175,6 +184,13 @@ const translations = {
         liquidations: "Liquidations",
         volumeOverTime: "Trade[XYZ] Volume par Jour (par Symbole)",
         volumeBreakdown: "Trade[XYZ] Répartition du Volume en %",
+
+        // HIP-3 Analysis
+        hip3Title: "ANALYSE MARCHÉS HIP-3",
+        totalVolume24h: "Volume 24h",
+        totalOpenInterest: "Open Interest",
+        bestPerformer: "Meilleur Perf.",
+        worstPerformer: "Pire Perf.",
 
         // Toasts
         connectedRealtime: "Connecté en temps réel",

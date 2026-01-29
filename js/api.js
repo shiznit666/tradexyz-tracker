@@ -389,10 +389,142 @@ function truncateAddress(address) {
   return `${address.slice(0, 6)}...${address.slice(-4)}`;
 }
 
+/**
+ * Get full market metadata with asset contexts (prices, funding, OI, etc.)
+ * This is the enhanced API call that returns HIP-3 analytics data
+ */
+async function getMetaAndAssetCtxs() {
+  return await apiRequest({
+    type: 'metaAndAssetCtxs',
+    dex: DEX_NAME
+  });
+}
+
+/**
+ * Get perp funding history for a coin
+ */
+async function getFundingHistory(coin, startTime = null) {
+  const body = {
+    type: 'fundingHistory',
+    coin: getFullAssetName(coin),
+    startTime: startTime || Date.now() - 7 * 24 * 60 * 60 * 1000 // Default 7 days
+  };
+  return await apiRequest(body);
+}
+
+/**
+ * Format funding rate as percentage (annualized hourly rate)
+ */
+function formatFundingRate(funding) {
+  const rate = parseFloat(funding);
+  if (isNaN(rate)) return '—';
+  // Funding is hourly rate, display as percentage
+  const pct = rate * 100;
+  const sign = pct >= 0 ? '+' : '';
+  return `${sign}${pct.toFixed(4)}%`;
+}
+
+/**
+ * Format premium as percentage
+ */
+function formatPremium(premium) {
+  const prem = parseFloat(premium);
+  if (isNaN(prem)) return '—';
+  const pct = prem * 100;
+  const sign = pct >= 0 ? '+' : '';
+  return `${sign}${pct.toFixed(3)}%`;
+}
+
+/**
+ * Format 24h change as percentage
+ */
+function format24hChange(currentPrice, prevDayPrice) {
+  const curr = parseFloat(currentPrice);
+  const prev = parseFloat(prevDayPrice);
+  if (isNaN(curr) || isNaN(prev) || prev === 0) return { value: 0, formatted: '—' };
+
+  const change = ((curr - prev) / prev) * 100;
+  const sign = change >= 0 ? '+' : '';
+  return {
+    value: change,
+    formatted: `${sign}${change.toFixed(2)}%`
+  };
+}
+
+/**
+ * Format open interest in USD
+ */
+function formatOpenInterest(oi, price) {
+  const openInterest = parseFloat(oi);
+  const markPrice = parseFloat(price);
+  if (isNaN(openInterest) || isNaN(markPrice)) return '—';
+
+  const oiUsd = openInterest * markPrice;
+  return '$' + formatNumber(oiUsd);
+}
+
+/**
+ * Process raw API data into HIP-3 analytics format
+ */
+function processHip3Analytics(metaAndCtxs) {
+  if (!metaAndCtxs || !Array.isArray(metaAndCtxs) || metaAndCtxs.length < 2) {
+    return [];
+  }
+
+  const universe = metaAndCtxs[0]?.universe || [];
+  const assetCtxs = metaAndCtxs[1] || [];
+
+  const analytics = [];
+
+  for (let i = 0; i < universe.length; i++) {
+    const market = universe[i];
+    const ctx = assetCtxs[i];
+
+    if (!market || !ctx || market.isDelisted) continue;
+
+    const name = market.name;
+    const markPrice = parseFloat(ctx.markPx || 0);
+    const prevDayPrice = parseFloat(ctx.prevDayPx || markPrice);
+    const funding = parseFloat(ctx.funding || 0);
+    const openInterest = parseFloat(ctx.openInterest || 0);
+    const premium = parseFloat(ctx.premium || 0);
+    const dayVolume = parseFloat(ctx.dayNtlVlm || 0);
+
+    const change24h = format24hChange(markPrice, prevDayPrice);
+
+    analytics.push({
+      name: name.replace(`${DEX_NAME}:`, ''),
+      fullName: name,
+      category: classifyAsset(name),
+      markPrice,
+      prevDayPrice,
+      change24h: change24h.value,
+      change24hFormatted: change24h.formatted,
+      funding,
+      fundingFormatted: formatFundingRate(funding),
+      openInterest,
+      openInterestUsd: openInterest * markPrice,
+      openInterestFormatted: formatOpenInterest(openInterest, markPrice),
+      premium,
+      premiumFormatted: formatPremium(premium),
+      volume24h: dayVolume,
+      volume24hFormatted: '$' + formatNumber(dayVolume),
+      maxLeverage: market.maxLeverage || 10
+    });
+  }
+
+  // Sort by volume (highest first)
+  analytics.sort((a, b) => b.volume24h - a.volume24h);
+
+  return analytics;
+}
+
 // Export functions
 window.HyperliquidAPI = {
   getMarketMeta,
   getAllMids,
+  getMetaAndAssetCtxs,
+  getFundingHistory,
   getUserFills,
   getUserFillsByTime,
   getUserOpenOrders,
@@ -410,6 +542,11 @@ window.HyperliquidAPI = {
   formatNumber,
   formatTime,
   formatDate,
+  formatFundingRate,
+  formatPremium,
+  format24hChange,
+  formatOpenInterest,
+  processHip3Analytics,
   isValidAddress,
   truncateAddress,
   MARKET_CATEGORIES,

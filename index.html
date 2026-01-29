@@ -102,6 +102,9 @@
         <button class="main-tab active" data-tab="markets">
           📈 <span data-i18n="tabMarkets">Markets</span>
         </button>
+        <button class="main-tab" data-tab="hip3">
+          🔥 <span data-i18n="tabHip3">HIP-3</span>
+        </button>
         <button class="main-tab" data-tab="analytics">
           📊 <span data-i18n="tabAnalytics">Analytics</span>
         </button>
@@ -154,6 +157,76 @@
           </section>
         </div>
       </div>
+
+      <!-- Tab Content: HIP-3 Analysis -->
+      <div id="tab-hip3" class="tab-content">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">🔥 <span data-i18n="hip3Title">HIP-3 MARKETS ANALYSIS</span></h2>
+            <span class="badge-dex" id="hip3LastUpdate">Loading...</span>
+          </div>
+
+          <!-- HIP-3 Summary Stats -->
+          <div class="analytics-stats hip3-stats">
+            <div class="analytics-stat">
+              <div class="analytics-stat-label" data-i18n="totalVolume24h">Volume 24h</div>
+              <div class="analytics-stat-value text-gradient" id="hip3TotalVolume">$0</div>
+            </div>
+            <div class="analytics-stat">
+              <div class="analytics-stat-label" data-i18n="totalOpenInterest">Open Interest</div>
+              <div class="analytics-stat-value" id="hip3TotalOI">$0</div>
+            </div>
+            <div class="analytics-stat">
+              <div class="analytics-stat-label" data-i18n="bestPerformer">Best Performer</div>
+              <div class="analytics-stat-value text-success" id="hip3BestPerformer">—</div>
+            </div>
+            <div class="analytics-stat">
+              <div class="analytics-stat-label" data-i18n="worstPerformer">Worst Performer</div>
+              <div class="analytics-stat-value text-danger" id="hip3WorstPerformer">—</div>
+            </div>
+          </div>
+
+          <!-- Filters -->
+          <div class="hip3-filters">
+            <div class="hip3-filter-group">
+              <button class="hip3-filter-btn active" data-hip3-category="all">🌐 All</button>
+              <button class="hip3-filter-btn" data-hip3-category="equities">📈 Stocks</button>
+              <button class="hip3-filter-btn" data-hip3-category="commodities">🏆 Commodities</button>
+              <button class="hip3-filter-btn" data-hip3-category="forex">💱 Forex</button>
+              <button class="hip3-filter-btn" data-hip3-category="index">📊 Index</button>
+            </div>
+            <input type="text" class="hip3-search" id="hip3Search" placeholder="🔍 Search markets...">
+          </div>
+
+          <!-- HIP-3 Data Table -->
+          <div class="hip3-table-container">
+            <table class="hip3-table" id="hip3Table">
+              <thead>
+                <tr>
+                  <th data-sort="name" class="sortable">Asset <span class="sort-icon">↕</span></th>
+                  <th data-sort="markPrice" class="sortable text-right">Price <span class="sort-icon">↕</span></th>
+                  <th data-sort="change24h" class="sortable text-right">24h % <span class="sort-icon">↕</span></th>
+                  <th data-sort="funding" class="sortable text-right">Funding <span class="sort-icon">↕</span></th>
+                  <th data-sort="openInterestUsd" class="sortable text-right">Open Interest <span
+                      class="sort-icon">↕</span></th>
+                  <th data-sort="volume24h" class="sortable text-right">Volume 24h <span class="sort-icon">↕</span></th>
+                  <th data-sort="premium" class="sortable text-right">Premium <span class="sort-icon">↕</span></th>
+                </tr>
+              </thead>
+              <tbody id="hip3TableBody">
+                <tr>
+                  <td colspan="7">
+                    <div class="loading">
+                      <div class="spinner"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
 
       <!-- Tab Content: Analytics -->
       <div id="tab-analytics" class="tab-content">
