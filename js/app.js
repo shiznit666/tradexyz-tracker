@@ -233,10 +233,11 @@ function updateStats() {
     const activeMarkets = Object.values(state.markets).filter(m => !m.isDelisted).length;
 
     // Update stat values if elements exist
+    // Note: statUniqueTraders is NOT updated here - we keep the static "74K+" from Hyperzap data
+    // The session-based unique traders count is shown in the trades feed and charts instead
     const statElements = {
         'statMarkets': activeMarkets,
         'statTrades': state.trades.length,
-        'statUniqueTraders': state.uniqueTraders.size,
         'statConnected': wsManager.getStatus() ? i18n.t('yes') : i18n.t('no')
     };
 
@@ -247,6 +248,7 @@ function updateStats() {
         }
     });
 }
+
 
 /**
  * Connect WebSocket and setup handlers

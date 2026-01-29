@@ -111,10 +111,11 @@ function generateChartData() {
         data.totalVolume += symbolTotal;
     });
 
-    // Generate stats
-    data.uniqueTraders = Math.floor(40000 + Math.random() * 10000);
-    data.feesCollected = data.totalVolume * 0.00015;
-    data.liquidations = Math.floor(50000 + Math.random() * 10000);
+    // Use accurate Trade[XYZ] statistics from Hyperzap (All Time data)
+    // Source: https://hyperzap.io/hip3
+    data.uniqueTraders = 64545;       // Trade[XYZ] unique traders
+    data.feesCollected = 3270000;     // $3.27M in fees collected
+    data.liquidations = 116140;       // Total liquidations
 
     return data;
 }

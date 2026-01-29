@@ -15,7 +15,7 @@ const translations = {
         // Stats
         activeMarkets: "Active Markets",
         recentTrades: "Recent Trades",
-        totalTraders: "Total Traders",
+        uniqueTraders: "Unique Traders",
         webSocket: "WebSocket",
         yes: "Yes",
         no: "No",
@@ -80,7 +80,6 @@ const translations = {
         // Analytics
         analyticsTitle: "PER-DEX SYMBOL ANALYTICS",
         tradingVolume: "Trading Volume",
-        uniqueTraders: "Unique Traders",
         feesCollected: "Trading Fees Collected",
         liquidations: "Liquidations",
         volumeOverTime: "Trade[XYZ] Trading Volume Over Time (by Symbol)",
@@ -114,7 +113,7 @@ const translations = {
         // Stats
         activeMarkets: "Marchés Actifs",
         recentTrades: "Trades Récents",
-        totalTraders: "Total Traders",
+        uniqueTraders: "Traders Uniques",
         webSocket: "WebSocket",
         yes: "Oui",
         no: "Non",
@@ -179,7 +178,6 @@ const translations = {
         // Analytics
         analyticsTitle: "ANALYTICS PAR SYMBOLE",
         tradingVolume: "Volume de Trading",
-        uniqueTraders: "Traders Uniques",
         feesCollected: "Frais Collectés",
         liquidations: "Liquidations",
         volumeOverTime: "Trade[XYZ] Volume par Jour (par Symbole)",
