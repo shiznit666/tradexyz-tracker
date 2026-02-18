@@ -164,6 +164,19 @@ async function loadMarketData() {
         renderMarkets();
         updateStats();
 
+        // Initialize ticker bar
+        if (window.Components && Components.initTickerBar) {
+            Components.initTickerBar(state.markets);
+        }
+
+        // Animate stat cards count-up
+        setTimeout(() => {
+            const statMarkets = document.getElementById('statMarkets');
+            if (statMarkets) {
+                Components.animateCountUp(statMarkets, activeMarkets || Object.values(state.markets).filter(m => !m.isDelisted).length);
+            }
+        }, 200);
+
     } catch (error) {
         console.error('Failed to load market data:', error);
         if (marketsGrid) {
@@ -231,14 +244,14 @@ function filterMarkets() {
  */
 function updateStats() {
     const activeMarkets = Object.values(state.markets).filter(m => !m.isDelisted).length;
+    const isConnected = wsManager.getStatus();
 
     // Update stat values if elements exist
     // Note: statUniqueTraders is NOT updated here - we keep the static "74K+" from Hyperzap data
-    // The session-based unique traders count is shown in the trades feed and charts instead
     const statElements = {
         'statMarkets': activeMarkets,
         'statTrades': state.trades.length,
-        'statConnected': wsManager.getStatus() ? i18n.t('yes') : i18n.t('no')
+        'statConnected': isConnected ? i18n.t('yes') : i18n.t('no')
     };
 
     Object.entries(statElements).forEach(([id, value]) => {

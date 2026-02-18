@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet">
 
   <!-- Styles -->
@@ -37,7 +37,7 @@
       </a>
 
       <div class="search-container">
-        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
           stroke-width="2">
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.35-4.35" />
@@ -67,31 +67,63 @@
     </div>
   </header>
 
+  <!-- Ticker Bar -->
+  <div class="ticker-bar" id="tickerBar">
+    <div class="ticker-track" id="tickerTrack">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
   <!-- Main Content -->
   <main>
     <div class="container">
       <!-- Page Header -->
       <div class="page-header">
         <h1 class="page-title" id="pageTitle">Live <span class="text-gradient">Transactions</span></h1>
-        <p class="page-subtitle" data-i18n="pageSubtitle">Track all transactions on trade.xyz HIP-3 markets in real-time
-        </p>
+        <p class="page-subtitle" data-i18n="pageSubtitle">Track all transactions on trade.xyz HIP-3 markets in real-time</p>
       </div>
 
       <!-- Stats -->
       <div class="stats-grid">
         <div class="stat-card">
+          <div class="stat-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8M12 17v4"/>
+            </svg>
+          </div>
           <div class="stat-value text-gradient" id="statMarkets">0</div>
           <div class="stat-label" data-i18n="activeMarkets">Active Markets</div>
         </div>
         <div class="stat-card">
+          <div class="stat-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
           <div class="stat-value" id="statTrades">0</div>
           <div class="stat-label" data-i18n="recentTrades">Recent Trades</div>
         </div>
         <div class="stat-card">
+          <div class="stat-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
           <div class="stat-value text-gradient" id="statUniqueTraders">74K+</div>
           <div class="stat-label" data-i18n="uniqueTraders">Unique Traders</div>
         </div>
         <div class="stat-card">
+          <div class="stat-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+              <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+              <line x1="12" y1="20" x2="12.01" y2="20"/>
+            </svg>
+          </div>
           <div class="stat-value" id="statConnected">No</div>
           <div class="stat-label" data-i18n="webSocket">WebSocket</div>
         </div>
@@ -100,16 +132,35 @@
       <!-- Main Navigation Tabs -->
       <div class="main-tabs">
         <button class="main-tab active" data-tab="markets">
-          📈 <span data-i18n="tabMarkets">Markets</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+          <span data-i18n="tabMarkets">Markets</span>
         </button>
         <button class="main-tab" data-tab="hip3">
-          🔥 <span data-i18n="tabHip3">HIP-3</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+          <span data-i18n="tabHip3">HIP-3</span>
         </button>
         <button class="main-tab" data-tab="analytics">
-          📊 <span data-i18n="tabAnalytics">Analytics</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6"  y1="20" x2="6"  y2="14"/>
+          </svg>
+          <span data-i18n="tabAnalytics">Analytics</span>
         </button>
         <button class="main-tab" data-tab="wallet">
-          👛 <span data-i18n="tabWallet">Wallet</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 12V22H4V12"/>
+            <path d="M22 7H2v5h20V7z"/>
+            <path d="M12 22V7"/>
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+          </svg>
+          <span data-i18n="tabWallet">Wallet</span>
         </button>
       </div>
 
@@ -117,12 +168,26 @@
       <div id="tab-markets" class="tab-content active">
         <!-- Category Tabs -->
         <div class="category-tabs">
-          <button class="category-tab active" data-category="all">🌐 <span data-i18n="all">All</span></button>
-          <button class="category-tab" data-category="equities">📈 <span data-i18n="equities">Stocks</span></button>
-          <button class="category-tab" data-category="commodities">🏆 <span
-              data-i18n="commodities">Commodities</span></button>
-          <button class="category-tab" data-category="forex">💱 <span data-i18n="forex">Forex</span></button>
-          <button class="category-tab" data-category="index">📊 <span data-i18n="index">Index</span></button>
+          <button class="category-tab active" data-category="all">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/></svg>
+            <span data-i18n="all">All</span>
+          </button>
+          <button class="category-tab" data-category="equities">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/></svg>
+            <span data-i18n="equities">Stocks</span>
+          </button>
+          <button class="category-tab" data-category="commodities">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span data-i18n="commodities">Commodities</span>
+          </button>
+          <button class="category-tab" data-category="forex">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span data-i18n="forex">Forex</span>
+          </button>
+          <button class="category-tab" data-category="index">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <span data-i18n="index">Index</span>
+          </button>
         </div>
 
         <!-- Main Layout -->
@@ -131,7 +196,10 @@
           <section>
             <div class="card">
               <div class="card-header">
-                <h2 class="card-title">📈 <span data-i18n="marketsTitle">HIP-3 MARKETS</span></h2>
+                <h2 class="card-title">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                  <span data-i18n="marketsTitle">HIP-3 MARKETS</span>
+                </h2>
               </div>
               <div id="marketsGrid" class="grid grid-auto">
                 <div class="loading">
@@ -145,7 +213,10 @@
           <section>
             <div class="card">
               <div class="card-header">
-                <h2 class="card-title">⚡ <span data-i18n="liveTradesTitle">LIVE TRADES</span></h2>
+                <h2 class="card-title">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span data-i18n="liveTradesTitle">LIVE TRADES</span>
+                </h2>
               </div>
               <div id="tradesFeed" class="trades-feed">
                 <div class="empty-state">
@@ -162,7 +233,10 @@
       <div id="tab-hip3" class="tab-content">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">🔥 <span data-i18n="hip3Title">HIP-3 MARKETS ANALYSIS</span></h2>
+            <h2 class="card-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              <span data-i18n="hip3Title">HIP-3 MARKETS ANALYSIS</span>
+            </h2>
             <span class="badge-dex" id="hip3LastUpdate">Loading...</span>
           </div>
 
@@ -189,13 +263,13 @@
           <!-- Filters -->
           <div class="hip3-filters">
             <div class="hip3-filter-group">
-              <button class="hip3-filter-btn active" data-hip3-category="all">🌐 All</button>
-              <button class="hip3-filter-btn" data-hip3-category="equities">📈 Stocks</button>
-              <button class="hip3-filter-btn" data-hip3-category="commodities">🏆 Commodities</button>
-              <button class="hip3-filter-btn" data-hip3-category="forex">💱 Forex</button>
-              <button class="hip3-filter-btn" data-hip3-category="index">📊 Index</button>
+              <button class="hip3-filter-btn active" data-hip3-category="all">All</button>
+              <button class="hip3-filter-btn" data-hip3-category="equities">Stocks</button>
+              <button class="hip3-filter-btn" data-hip3-category="commodities">Commodities</button>
+              <button class="hip3-filter-btn" data-hip3-category="forex">Forex</button>
+              <button class="hip3-filter-btn" data-hip3-category="index">Index</button>
             </div>
-            <input type="text" class="hip3-search" id="hip3Search" placeholder="🔍 Search markets...">
+            <input type="text" class="hip3-search" id="hip3Search" placeholder="Search markets...">
           </div>
 
           <!-- HIP-3 Data Table -->
@@ -207,8 +281,7 @@
                   <th data-sort="markPrice" class="sortable text-right">Price <span class="sort-icon">↕</span></th>
                   <th data-sort="change24h" class="sortable text-right">24h % <span class="sort-icon">↕</span></th>
                   <th data-sort="funding" class="sortable text-right">Funding <span class="sort-icon">↕</span></th>
-                  <th data-sort="openInterestUsd" class="sortable text-right">Open Interest <span
-                      class="sort-icon">↕</span></th>
+                  <th data-sort="openInterestUsd" class="sortable text-right">Open Interest <span class="sort-icon">↕</span></th>
                   <th data-sort="volume24h" class="sortable text-right">Volume 24h <span class="sort-icon">↕</span></th>
                   <th data-sort="premium" class="sortable text-right">Premium <span class="sort-icon">↕</span></th>
                 </tr>
@@ -216,9 +289,7 @@
               <tbody id="hip3TableBody">
                 <tr>
                   <td colspan="7">
-                    <div class="loading">
-                      <div class="spinner"></div>
-                    </div>
+                    <div class="loading"><div class="spinner"></div></div>
                   </td>
                 </tr>
               </tbody>
@@ -227,12 +298,14 @@
         </div>
       </div>
 
-
       <!-- Tab Content: Analytics -->
       <div id="tab-analytics" class="tab-content">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">📊 <span data-i18n="analyticsTitle">PER-DEX SYMBOL ANALYTICS</span></h2>
+            <h2 class="card-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              <span data-i18n="analyticsTitle">PER-DEX SYMBOL ANALYTICS</span>
+            </h2>
             <span class="badge-dex">Trade[XYZ]</span>
           </div>
 
@@ -292,7 +365,10 @@
       <div id="tab-wallet" class="tab-content">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">👛 <span data-i18n="walletSearchTitle">WALLET LOOKUP</span></h2>
+            <h2 class="card-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+              <span data-i18n="walletSearchTitle">WALLET LOOKUP</span>
+            </h2>
           </div>
           <p class="text-secondary" style="margin-bottom: 1rem;" data-i18n="walletSearchDesc">
             Enter an Ethereum wallet address to view transaction history on HIP-3 markets
@@ -301,7 +377,7 @@
             <input type="text" id="walletInput" class="wallet-input" data-i18n-placeholder="walletPlaceholder"
               placeholder="0x... (wallet address)">
             <button type="submit" class="btn btn-primary">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="11" cy="11" r="8" />
                 <path d="m21 21-4.35-4.35" />
               </svg>
@@ -315,11 +391,8 @@
         </div>
       </div>
 
-      <!-- Footer Info -->
-      <footer style="margin-top: 3rem; padding: 2rem 0; text-align: center; border-top: 1px solid var(--border-color);">
-
-
-        <!-- Referral & Donation Section -->
+      <!-- Footer -->
+      <footer>
         <div class="footer-links">
           <a href="https://app.hyperliquid.xyz/join/SHIZ" target="_blank" rel="noopener" class="footer-cta referral">
             🚀 <span data-i18n="joinHyperliquid">Join Hyperliquid</span>
@@ -330,14 +403,13 @@
           </button>
         </div>
 
-        <p class="text-secondary" style="margin-bottom: 0.5rem; margin-top: 1.5rem;" data-i18n="footerText">
+        <p class="text-secondary" style="margin-bottom: 0.5rem;" data-i18n="footerText">
           Real-time data via Hyperliquid API • HIP-3 markets on trade.xyz
         </p>
         <p class="text-tertiary" style="font-size: 0.875rem;" data-i18n="disclaimer">
           ⚠️ This site is not affiliated with trade.xyz. For informational purposes only.
         </p>
-
-        <p class="text-tertiary" style="font-size: 0.75rem; margin-top: 1rem;">
+        <p class="text-tertiary" style="font-size: 0.75rem; margin-top: 0.75rem;">
           <span data-i18n="madeWith">Made with</span> ❤️ <span data-i18n="by">by</span> SHIZ
         </p>
       </footer>
@@ -348,7 +420,7 @@
     </div>
   </main>
 
-  <!-- Scripts - i18n must be loaded first -->
+  <!-- Scripts -->
   <script src="js/i18n.js"></script>
   <script src="js/api.js"></script>
   <script src="js/websocket.js"></script>
@@ -356,27 +428,22 @@
   <script src="js/charts.js"></script>
   <script src="js/app.js"></script>
 
-  <!-- Initialize language and theme on load -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      // Update button states based on saved language
       const savedLang = localStorage.getItem('lang') || 'en';
       i18n.setLanguage(savedLang);
 
-      // Initialize theme from localStorage
       const savedTheme = localStorage.getItem('theme') || 'dark';
       if (savedTheme === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
       }
     });
 
-    // Copy donation address to clipboard
     function copyDonation() {
       const address = '0x2A7D39431021E4f3D4CbD918878A82C6D4F0e357';
       navigator.clipboard.writeText(address).then(() => {
         Components.showToast(i18n.t('addressCopied'), 'success');
       }).catch(() => {
-        // Fallback
         const input = document.getElementById('donationAddress');
         input.select();
         document.execCommand('copy');
@@ -384,11 +451,9 @@
       });
     }
 
-    // Toggle between light and dark theme
     function toggleTheme() {
       const html = document.documentElement;
       const currentTheme = html.getAttribute('data-theme');
-
       if (currentTheme === 'light') {
         html.removeAttribute('data-theme');
         localStorage.setItem('theme', 'dark');
